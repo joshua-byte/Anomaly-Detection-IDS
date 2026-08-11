@@ -1,153 +1,239 @@
-# AI-Assisted Flow-Based Intrusion Detection System (IDS)
+# ⚡ AI-Assisted Flow-Based Intrusion Detection System (IDS)
 
-![Python](https://img.shields.io/badge/Python-3.x-blue)
-![Scapy](https://img.shields.io/badge/Scapy-Networking-green)
-![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-red)
-![Machine Learning](https://img.shields.io/badge/ML-IsolationForest-orange)
-![Status](https://img.shields.io/badge/Status-Active-success)
+<div align="center">
 
-A real-time flow-based intrusion detection system designed to analyze live network traffic and identify suspicious behavioral patterns using machine learning-driven anomaly detection.
+![Python](https://img.shields.io/badge/Python-3.x-blue?style=for-the-badge&logo=python&logoColor=white)
+![Scapy](https://img.shields.io/badge/Scapy-Networking-green?style=for-the-badge)
+![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-red?style=for-the-badge&logo=streamlit&logoColor=white)
+![Machine Learning](https://img.shields.io/badge/ML-Isolation%20Forest-orange?style=for-the-badge)
+![CICIDS2017](https://img.shields.io/badge/Dataset-CICIDS2017-purple?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
 
-The system captures live packets, aggregates them into network flows, extracts statistical traffic features, and applies Isolation Forest anomaly detection to identify unusual traffic behavior such as abnormal packet bursts, high-throughput communication, and scanning activity.
+</div>
 
-Built with a detection engineering mindset, the project simulates lightweight SOC-oriented threat analysis workflows by combining behavioral traffic analytics, anomaly scoring, and interactive visualization dashboards.
+A real-time flow-based Intrusion Detection System (IDS) designed to analyze
+network traffic and identify suspicious behavioral patterns using
+machine-learning-driven anomaly detection.
 
----
+The system captures network packets, aggregates them into communication flows,
+extracts statistical traffic features, and applies an **Isolation Forest**
+model to identify unusual network behavior such as abnormal packet bursts,
+high-throughput communication, and scanning activity.
 
-# Features
+The anomaly-detection model was **trained and evaluated using the
+CICIDS2017 benchmark dataset**, while the current application extends the
+pipeline toward live network traffic analysis using Scapy.
 
-* Real-time packet capture using Scapy
-* Flow-based traffic analysis
-* Isolation Forest anomaly detection pipeline
-* Behavioral traffic analytics
-* Interactive Streamlit + Plotly dashboard
-* Suspicious flow inspection and anomaly triage
-* Statistical feature extraction from live traffic
-* Lightweight SOC-style workflow simulation
-* Detection of abnormal traffic spikes and burst behavior
-* Analyst-oriented anomaly visualization
-
----
-
-# Why Flow-Based Detection?
-
-Traditional packet-level inspection can become noisy and computationally expensive in dynamic network environments.
-
-This project focuses on flow-based behavioral analysis to:
-
-* identify anomalous communication patterns,
-* detect suspicious traffic behavior over time,
-* reduce dependence on static signatures,
-* and support scalable anomaly-oriented monitoring workflows.
-
-Flow-based analytics allow the IDS to capture behavioral relationships between packets rather than treating packets as isolated events.
+Built with a detection-engineering mindset, the project explores lightweight
+SOC-oriented workflows by combining behavioral traffic analytics, anomaly
+scoring, and interactive visualization.
 
 ---
 
-# Detection Pipeline
+# 🛰️ Detection Pipeline
 
 ```text
-Live Packet Capture
-        ↓
-Flow Aggregation
-        ↓
-Feature Extraction
-        ↓
-Isolation Forest Analysis
-        ↓
-Anomaly Scoring
-        ↓
-Visualization Dashboard
-        ↓
-Suspicious Flow Inspection
+                    TRAINING / EVALUATION
+                           │
+                           ▼
+                      CICIDS2017
+                           │
+                           ▼
+                  Feature Engineering
+                           │
+                           ▼
+                    Isolation Forest
+                           │
+                           ▼
+                    Trained Model
+                           │
+              ┌────────────┴────────────┐
+              │                         │
+              ▼                         ▼
+       Benchmark Traffic           Live Traffic
+                                   Capture
+              │                         │
+              │                         ▼
+              │                  Flow Aggregation
+              │                         │
+              │                         ▼
+              │                  Feature Extraction
+              │                         │
+              └──────────────┬──────────┘
+                             │
+                             ▼
+                     Anomaly Detection
+                             │
+                             ▼
+                    Anomaly Scoring
+                             │
+                             ▼
+                  Streamlit Visualization
+                             │
+                             ▼
+                    Suspicious Flow
+                       Inspection
 ```
 
 ---
 
-# System Architecture
+# 🔍 Features
 
-The IDS operates using a behavioral flow-analysis pipeline rather than isolated packet inspection.
+- Real-time packet capture using **Scapy**
+- Flow-based network traffic analysis
+- Machine-learning anomaly detection using **Isolation Forest**
+- Model training/evaluation using **CICIDS2017**
+- Behavioral traffic analytics
+- Statistical network-flow feature extraction
+- Interactive **Streamlit + Plotly** dashboard
+- Suspicious-flow inspection
+- Anomaly scoring and visualization
+- Detection of abnormal traffic spikes and burst behavior
+- Lightweight SOC-style traffic analysis workflow
+
+---
+
+# 🧠 Why Flow-Based Detection?
+
+Traditional packet-level inspection can become noisy and computationally
+expensive when analyzing large volumes of network traffic.
+
+This project therefore focuses on **flow-based behavioral analysis**.
+
+Instead of treating every packet as an isolated observation, packets are
+aggregated into communication flows and analyzed using statistical properties
+of the resulting traffic behavior.
+
+This allows the system to investigate:
+
+- unusual communication patterns,
+- abnormal traffic intensity,
+- packet and byte-rate deviations,
+- burst behavior,
+- irregular TCP activity,
+- and other statistical characteristics of network flows.
+
+The goal is to explore anomaly-oriented detection that does not depend
+exclusively on predefined attack signatures.
+
+---
+
+# 🏗️ System Architecture
+
+The IDS operates through a behavioral flow-analysis pipeline.
 
 ## 1. Packet Capture
 
-Network packets are captured in real time using Scapy from active interfaces.
+Network packets are captured in real time using **Scapy** from an active
+network interface.
 
 ## 2. Flow Aggregation
 
-Packets are grouped into logical communication flows using:
+Captured packets are grouped into logical communication flows using
+attributes such as:
 
-* Source IP
-* Destination IP
-* Source Port
-* Destination Port
-* Protocol
-* Session timing
+- Source IP
+- Destination IP
+- Source Port
+- Destination Port
+- Protocol
+- Session timing
 
 ## 3. Feature Engineering
 
 The system extracts behavioral traffic statistics including:
 
-* Flow duration
-* Total packets
-* Total bytes
-* Packets per second
-* Bytes per second
-* Average packet size
-* Packet size variance
-* SYN / ACK / FIN activity
+- Flow duration
+- Total packets
+- Total bytes
+- Packets per second
+- Bytes per second
+- Average packet size
+- Packet-size variance
+- TCP SYN activity
+- TCP ACK activity
+- TCP FIN activity
 
 ## 4. Anomaly Detection
 
-An Isolation Forest model analyzes network-flow behavior and identifies statistical outliers representing potentially suspicious traffic activity.
+An **Isolation Forest** model analyzes network-flow behavior and identifies
+statistical outliers that may represent suspicious or abnormal traffic.
+
+The model is trained/evaluated using the **CICIDS2017** benchmark dataset.
 
 ## 5. Visualization & Triage
 
-Detected anomalies are visualized through an analyst-oriented dashboard to support lightweight SOC-style traffic inspection and anomaly triage workflows.
+Detected anomalies are presented through an interactive dashboard to support
+traffic inspection and lightweight anomaly-triage workflows.
 
 ---
 
-# Dashboard Preview
+# 📊 CICIDS2017
+
+The project uses **CICIDS2017** as the benchmark dataset for model
+training and evaluation.
+
+The dataset provides labeled network traffic containing both benign and
+attack-oriented traffic patterns.
+
+The project uses the dataset to develop and evaluate the anomaly-detection
+pipeline before applying the resulting approach to live traffic analysis.
+
+The benchmark experiments include traffic associated with abnormal behaviors
+such as:
+
+- DDoS traffic
+- Port scanning
+- High-volume traffic
+- Other anomalous network activity represented in the dataset
+
+---
+
+# 🖥️ Dashboard Preview
 
 ## Detection Analytics Dashboard
 
 <img width="1913" height="889" alt="dashboard" src="https://github.com/user-attachments/assets/0a3b4da0-fa7e-4db9-a093-609bb9a01350" />
 
-
-The dashboard provides real-time behavioral traffic analytics for anomaly-oriented monitoring workflows.
+The dashboard provides interactive behavioral traffic analytics for
+anomaly-oriented monitoring.
 
 Visualizations include:
 
-* flow duration distributions,
-* traffic intensity analysis,
-* anomaly ratios,
-* and byte-versus-packet outlier detection.
+- Flow-duration distributions
+- Traffic-intensity analysis
+- Anomaly ratios
+- Byte-versus-packet analysis
+- Suspicious-flow inspection
 
-The interface is designed to simulate lightweight SOC-style traffic inspection and anomaly triage workflows.
+The interface is designed to provide a lightweight environment for
+investigating anomalous network behavior.
 
 ---
 
-# Suspicious Flow Analysis
+# 🚨 Suspicious Flow Analysis
 
 ## Top Suspicious Flows
 
 <img width="1863" height="351" alt="suspicious" src="https://github.com/user-attachments/assets/b178f9fc-b5e3-4e39-a845-bc9080fddaa5" />
 
+The suspicious-flow analysis module surfaces statistically anomalous
+network flows using behavioral traffic indicators such as:
 
-The suspicious flow analysis module surfaces statistically anomalous network flows using behavioral traffic indicators such as:
+- Abnormal packet throughput
+- Unusually large byte-transfer volumes
+- High packets-per-second activity
+- Sustained burst communication
+- Irregular TCP communication patterns
 
-* abnormal packet throughput,
-* unusually large byte-transfer volumes,
-* high packets-per-second activity,
-* sustained burst communication,
-* and irregular TCP communication patterns.
-
-This enables analyst-oriented inspection of potentially malicious or abnormal network behavior.
+This provides an analyst-oriented view of potentially abnormal network
+behavior.
 
 ---
 
-# Example Detection Output
+# ⚠️ Example Detection Output
 
-```bash
+```text
 [ALERT] Potential Anomalous Flow Detected
 
 Source IP: 192.168.1.15
@@ -159,80 +245,98 @@ Anomaly Score: -0.42
 Classification: Suspicious Burst Activity
 ```
 
----
-
-# Simulated Attack Scenarios
-
-The IDS was tested against simulated abnormal traffic conditions including:
-
-* ICMP flood traffic
-* Port scanning behavior
-* High-frequency packet bursts
-* Abnormal connection spikes
-* Rapid traffic generation
-* Sustained high-throughput communication
-
-These simulations were used to evaluate anomaly visibility and behavioral traffic differentiation.
+The anomaly score is produced by the Isolation Forest model and is used as
+an indicator of how strongly a flow deviates from the learned behavioral
+distribution.
 
 ---
 
-# Security Relevance
+# 🧪 Simulated Attack Scenarios
+
+The live IDS was tested against simulated abnormal traffic conditions
+including:
+
+- ICMP flood traffic
+- Port-scanning behavior
+- High-frequency packet bursts
+- Abnormal connection spikes
+- Rapid traffic generation
+- Sustained high-throughput communication
+
+These scenarios were used to investigate how anomalous traffic behavior
+appears within the flow-level feature space and how effectively the system
+surfaces suspicious activity.
+
+---
+
+# 🛡️ Security Relevance
 
 This project explores practical concepts used in:
 
-* detection engineering,
-* SOC monitoring,
-* anomaly-based intrusion detection,
-* behavioral traffic analytics,
-* and AI-assisted network defense systems.
+- Detection engineering
+- SOC monitoring
+- Anomaly-based intrusion detection
+- Behavioral traffic analytics
+- Network security
+- AI-assisted security analytics
 
-The workflow aligns with modern defensive-security approaches focused on behavioral anomaly identification rather than purely signature-based detection.
-
----
-
-# Detection Engineering Focus
-
-This project focuses on:
-
-* Behavioral traffic analysis
-* Anomaly-based intrusion detection
-* Lightweight SOC-oriented workflows
-* Flow-level threat analytics
-* Statistical anomaly detection
-* AI-assisted security analytics
-* Detection engineering experimentation
-
-The platform is intended as an educational and research-oriented environment for exploring modern network-detection workflows.
+The system explores a defensive approach where statistical behavioral
+deviations can be used to identify potentially suspicious traffic without
+relying exclusively on static signatures.
 
 ---
 
-# Tech Stack
+# 🎯 Detection Engineering Focus
+
+The project focuses on:
+
+```text
+Behavioral Traffic Analysis
+        +
+Anomaly-Based Detection
+        +
+Flow-Level Analytics
+        +
+Machine Learning
+        +
+Analyst-Oriented Visualization
+        ↓
+Network Security Detection
+```
+
+The platform is intended as an educational and research-oriented environment
+for experimenting with network detection engineering concepts.
+
+---
+
+# 🧰 Tech Stack
 
 ## Languages & Frameworks
 
-* Python
+- Python
 
 ## Networking & Traffic Analysis
 
-* Scapy
+- Scapy
 
 ## Machine Learning
 
-* Scikit-learn (Isolation Forest)
+- Scikit-learn
+- Isolation Forest
 
 ## Visualization
 
-* Streamlit
-* Plotly
+- Streamlit
+- Plotly
 
 ## Data Processing
 
-* Pandas
-* NumPy
+- Pandas
+- NumPy
 
 ---
 
-# Installation
+# ⚙️ Installation
 
 ## Clone Repository
 
@@ -253,9 +357,12 @@ pip install -r requirements.txt
 sudo streamlit run app.py
 ```
 
+> Administrative privileges may be required for live packet capture depending
+> on the operating system and network-interface configuration.
+
 ---
 
-# Project Structure
+# 📁 Project Structure
 
 ```text
 Anomaly-Detection-IDS/
@@ -266,41 +373,105 @@ Anomaly-Detection-IDS/
 ├── model_utils.py
 ├── visualization.py
 ├── logs.csv
+├── requirements.txt
 └── README.md
 ```
 
 ---
 
-# Future Improvements
+# 🚀 Future Improvements
 
-* Real-time alert streaming
-* Threat classification models
-* SIEM integration
-* Multi-model anomaly detection
-* Adaptive threshold tuning
-* Distributed traffic monitoring
-* ATT&CK-aligned event categorization
-* Detection rule correlation
-* Automated reporting pipeline
-* Real-time network alert notifications
+The project can be extended with:
+
+- Real-time alert streaming
+- Dedicated threat-classification models
+- SIEM integration
+- Multi-model anomaly detection
+- Adaptive threshold tuning
+- Distributed traffic monitoring
+- ATT&CK-aligned event categorization
+- Detection-rule correlation
+- Automated reporting pipelines
+- Real-time network alert notifications
+- Signature-based detection integration
+- Hybrid behavioral + signature-based detection
 
 ---
 
-# Educational Disclaimer
+# 🔬 Research Direction
+
+A potential future direction is to combine **behavioral anomaly detection**
+with traditional signature-based detection mechanisms.
+
+For example:
+
+```text
+             Network Traffic
+                    │
+          ┌─────────┴─────────┐
+          │                   │
+          ▼                   ▼
+   Behavioral Model      Signature Engine
+   (ML / Anomaly)          (Future Work)
+          │                   │
+          └─────────┬─────────┘
+                    │
+                    ▼
+             Alert Correlation
+                    │
+                    ▼
+             Analyst Triage
+```
+
+This could enable investigation into whether combining behavioral and
+signature-based signals improves alert prioritization and reduces false
+positives.
+
+**Note:** Signature-based integration, including Snort integration, is
+currently a **future direction** and is not part of the current implementation.
+
+---
+
+# ⚠️ Limitations
+
+The current system is primarily an experimental and educational platform.
+
+Important limitations include:
+
+- Isolation Forest provides anomaly scores rather than definitive attack
+  attribution.
+- Statistical anomalies are not necessarily malicious.
+- Model performance depends on feature quality and the underlying training
+  distribution.
+- Live network environments can differ substantially from benchmark datasets.
+- The current implementation does not provide full SIEM functionality.
+- The current implementation does not include Snort or another signature
+  correlation engine.
+
+These limitations motivate future work involving richer datasets,
+multi-model detection, contextual enrichment, and hybrid detection systems.
+
+---
+
+# 🔐 Educational Disclaimer
 
 This project is intended for:
 
-* cybersecurity education,
-* detection engineering experimentation,
-* behavioral traffic analytics research,
-* and defensive security learning purposes only.
+- Cybersecurity education
+- Detection-engineering experimentation
+- Behavioral traffic analytics research
+- Defensive-security learning
 
-The system should only be deployed in authorized and controlled environments.
+The system should only be deployed on networks and systems for which you
+have explicit authorization.
 
 ---
 
-# Author
+# 👨‍💻 Author
 
-Joshua Jesuraj Sanctus
+**Joshua Jesuraj Sanctus**
 
-Cybersecurity • Detection Engineering • VAPT • AI-Assisted Threat Analytics
+`Cybersecurity` · `Detection Engineering` · `VAPT` · `Network Security`
+· `AI-Assisted Security Analytics`
+
+[![GitHub](https://img.shields.io/badge/GitHub-joshua--byte-181717?style=for-the-badge&logo=github)](https://github.com/joshua-byte)
