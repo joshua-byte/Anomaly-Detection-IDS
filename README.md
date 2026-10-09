@@ -1,4 +1,4 @@
-# ⚡ AI-Assisted Flow-Based Intrusion Detection System (IDS)
+# AI-Assisted Flow-Based Intrusion Detection System (IDS)
 
 <div align="center">
 
@@ -30,7 +30,7 @@ scoring, and interactive visualization.
 
 ---
 
-# 🛰️ Detection Pipeline
+#  Detection Pipeline
 
 ```text
                     TRAINING / EVALUATION
@@ -77,7 +77,7 @@ scoring, and interactive visualization.
 
 ---
 
-# 🔍 Features
+#  Features
 
 - Real-time packet capture using **Scapy**
 - Flow-based network traffic analysis
@@ -93,7 +93,7 @@ scoring, and interactive visualization.
 
 ---
 
-# 🧠 Why Flow-Based Detection?
+#  Why Flow-Based Detection?
 
 Traditional packet-level inspection can become noisy and computationally
 expensive when analyzing large volumes of network traffic.
@@ -118,7 +118,7 @@ exclusively on predefined attack signatures.
 
 ---
 
-# 🏗️ System Architecture
+#  System Architecture
 
 The IDS operates through a behavioral flow-analysis pipeline.
 
@@ -168,7 +168,7 @@ traffic inspection and lightweight anomaly-triage workflows.
 
 ---
 
-# 📊 CICIDS2017
+# CICIDS2017
 
 The project uses **CICIDS2017** as the benchmark dataset for model
 training and evaluation.
@@ -189,7 +189,7 @@ such as:
 
 ---
 
-# 🖥️ Dashboard Preview
+#  Dashboard Preview
 
 ## Detection Analytics Dashboard
 
@@ -211,7 +211,7 @@ investigating anomalous network behavior.
 
 ---
 
-# 🚨 Suspicious Flow Analysis
+# Suspicious Flow Analysis
 
 ## Top Suspicious Flows
 
@@ -231,7 +231,7 @@ behavior.
 
 ---
 
-# ⚠️ Example Detection Output
+#  Example Detection Output
 
 ```text
 [ALERT] Potential Anomalous Flow Detected
@@ -251,7 +251,7 @@ distribution.
 
 ---
 
-# 🧪 Simulated Attack Scenarios
+#  Simulated Attack Scenarios
 
 The live IDS was tested against simulated abnormal traffic conditions
 including:
@@ -269,7 +269,7 @@ surfaces suspicious activity.
 
 ---
 
-# 🛡️ Security Relevance
+# Security Relevance
 
 This project explores practical concepts used in:
 
@@ -286,7 +286,7 @@ relying exclusively on static signatures.
 
 ---
 
-# 🎯 Detection Engineering Focus
+# Detection Engineering Focus
 
 The project focuses on:
 
@@ -309,7 +309,7 @@ for experimenting with network detection engineering concepts.
 
 ---
 
-# 🧰 Tech Stack
+# Tech Stack
 
 ## Languages & Frameworks
 
@@ -336,7 +336,7 @@ for experimenting with network detection engineering concepts.
 
 ---
 
-# ⚙️ Installation
+# Installation
 
 ## Clone Repository
 
@@ -362,7 +362,7 @@ sudo streamlit run app.py
 
 ---
 
-# 📁 Project Structure
+# Project Structure
 
 ```text
 Anomaly-Detection-IDS/
@@ -379,7 +379,7 @@ Anomaly-Detection-IDS/
 
 ---
 
-# 🚀 Future Improvements
+# Future Improvements
 
 The project can be extended with:
 
@@ -395,83 +395,3 @@ The project can be extended with:
 - Real-time network alert notifications
 - Signature-based detection integration
 - Hybrid behavioral + signature-based detection
-
----
-
-# 🔬 Research Direction
-
-A potential future direction is to combine **behavioral anomaly detection**
-with traditional signature-based detection mechanisms.
-
-For example:
-
-```text
-             Network Traffic
-                    │
-          ┌─────────┴─────────┐
-          │                   │
-          ▼                   ▼
-   Behavioral Model      Signature Engine
-   (ML / Anomaly)          (Future Work)
-          │                   │
-          └─────────┬─────────┘
-                    │
-                    ▼
-             Alert Correlation
-                    │
-                    ▼
-             Analyst Triage
-```
-
-This could enable investigation into whether combining behavioral and
-signature-based signals improves alert prioritization and reduces false
-positives.
-
-**Note:** Signature-based integration, including Snort integration, is
-currently a **future direction** and is not part of the current implementation.
-
----
-
-# ⚠️ Limitations
-
-The current system is primarily an experimental and educational platform.
-
-Important limitations include:
-
-- Isolation Forest provides anomaly scores rather than definitive attack
-  attribution.
-- Statistical anomalies are not necessarily malicious.
-- Model performance depends on feature quality and the underlying training
-  distribution.
-- Live network environments can differ substantially from benchmark datasets.
-- The current implementation does not provide full SIEM functionality.
-- The current implementation does not include Snort or another signature
-  correlation engine.
-
-These limitations motivate future work involving richer datasets,
-multi-model detection, contextual enrichment, and hybrid detection systems.
-
----
-
-# 🔐 Educational Disclaimer
-
-This project is intended for:
-
-- Cybersecurity education
-- Detection-engineering experimentation
-- Behavioral traffic analytics research
-- Defensive-security learning
-
-The system should only be deployed on networks and systems for which you
-have explicit authorization.
-
----
-
-# 👨‍💻 Author
-
-**Joshua Jesuraj Sanctus**
-
-`Cybersecurity` · `Detection Engineering` · `VAPT` · `Network Security`
-· `AI-Assisted Security Analytics`
-
-[![GitHub](https://img.shields.io/badge/GitHub-joshua--byte-181717?style=for-the-badge&logo=github)](https://github.com/joshua-byte)
